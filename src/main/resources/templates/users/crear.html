@@ -1,0 +1,49 @@
+<div class="container my-auto p-3" th:fragment="contenido"> <!-- esto es la vista del crear  -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Crear Usuario
+                </div>                                                                                                          <!-- se usa para lidiar con imagenes y la manda por partes -->
+                <form class="card-body" th:action="@{/usuarios/crear}" th:object="${usuario}" method="POST">
+                    <div class="mb-3"><!-- texto -->
+                        <label for="nombre" class="form-label">Nombre de Usuario</label>       
+                        <input type="text" class="form-control" id="nombre" th:field="*{nombre}" th:errorClass="'is-invalid'">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                    </div>
+                    <div class="mb-3"><!-- texto -->
+                        <label for="email" class="form-label">Email</label>       
+                        <input type="text" class="form-control" id="email" th:field="*{email}" th:errorClass="'is-invalid'">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                    </div>
+                    <div class="mb-3"><!-- texto -->
+                        <label for="clave" class="form-label">Contraseña</label>       
+                        <input type="text" class="form-control" id="clave" th:field="*{clave}" th:errorClass="'is-invalid'">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('clave')}" th:errors="*{clave}"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="estado" class="form-label">Seleccione un Estado</label><!-- select2 -->
+                        <select id="estado" th:field="*{estado}" class="select2 form-select" th:errorClass="'is-invalid'">
+                            <option selected value="1">Activo</option>
+                            <option selected value="0">Desactivado</option> <!-- th:text notacion de timeleaf -->
+                        </select>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="estado" class="form-label">Seleccione un Rol</label><!-- select2 -->
+                        <select id="rol" th:field="*{rol}" class="select2 form-select" th:errorClass="'is-invalid'">
+                            <option selected value=""></option>
+                            <option th:each="r : ${roles}" th:value="${r.id}" th:text="${r.nombre}"></option> <!-- th:text notacion de timeleaf -->
+                        </select>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('rol')}" th:errors="*{rol}"></div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary mx-2">Guardar</button><!-- esto siempre dentro del formulario sino no lo manda  -->
+                        <a href="/roles" class="btn btn-secondary mx-2">Volver</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:fragment="script"></script><!-- Eato me tiraba error-->

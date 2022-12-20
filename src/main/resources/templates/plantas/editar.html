@@ -1,0 +1,37 @@
+<div class="container my-auto p-3" th:fragment="contenido">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Editar Rol
+                </div>
+                <form class="card-body" th:action="@{'/roles/editar/{id}' (id=${rol.id})}" th:object="${roles}" th:method="PUT">
+                    
+                    <div class="mb-3"><!-- aca se manda la accion y es un PUT -->
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" th:field="*{nombre}" th:errorClass="'is-invalid'">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                    </div>
+                    <div class="mb-3"><!-- texto -->
+                        <label for="descripcion" class="form-label">Descripcion</label>       
+                        <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}" th:errorClass="'is-invalid'">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="estado" class="form-label">Seleccione un Estado</label><!-- select2 -->
+                        <select id="estado" th:field="*{estado}" class="select2 form-select" th:errorClass="'is-invalid'">
+                            <option selected value="1">Activo</option>
+                            <option selected value="0">Desactivado</option> <!-- th:text notacion de timeleaf -->
+                        </select>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary mx-2">Editar</button>
+                        <a href="/roles" class="btn btn-secondary mx-2">Volver</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:fragment="script"></script> <!-- Eato me tiraba error-->

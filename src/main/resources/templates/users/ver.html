@@ -1,0 +1,33 @@
+<div class="container my-auto p-3" th:fragment="contenido">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header h3" th:text="${usuario.nombre}"></div>
+                <div class="card-body">
+                    <p>
+                        <span class="fw-bold">ID:</span>
+                        <span th:text="${usuario.id}"></span>   
+                    </p>
+                    <p>
+                    <span class="fw-bold">Email</span>
+                        <span th:text="${usuario.email}"></span>
+                    </p>
+                    <p>
+                        <span class="fw-bold">Estado</span>
+                        <span th:text="${usuario.estado}"></span>
+                    </p>
+                    <p>
+                        <span class="fw-bold">Rol</span>
+                        <span th:text="${usuario.rol}"></span>
+                    </p>
+                    
+                    <div class="d-flex justify-content-center">
+                        <a href="/usuarios" class="btn btn-secondary mx-2">Volver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:fragment="script"></script>

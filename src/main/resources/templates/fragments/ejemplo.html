@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" style="position: relative; min-height: 100%;"
+xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">  <!-- aca arranca la seguridad -->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/index" href="/images/index.png">
+
+        <title th:text="${titulo + ' - Inicio de Jardineria'}"></title>  <!-- esto es de timeleaf -->
+
+        <!-- CSS Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+        <!-- CSS personalizado -->
+        <link href="/css/jardineria.css" rel="stylesheet">
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com/" />
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"/>
+
+        <!-- Font Awesome  kit de iconos -->
+        <script src="https://kit.fontawesome.com/e81adcd316.js" crossorigin="anonymous"></script>
+
+        <!-- CSS Select2 (javascript)-->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+        <!-- CSS DataTables -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    </head>
+    <body>
+        <div id="content" class="container-fluid">
+            <div class="row" style="height: 84px;"><!-- encabezado -->
+                <div class="col" th:replace="fragments/header :: header"></div><!-- linea de timely contenido externo  -->
+            </div> <!-- inserto una parte de html dentro del proyecto -->
+
+            <div class="row" style="min-height: calc(100vh - 144px);"><!--  -->
+                <div class="col" th:replace="${vista} :: contenido"></div>
+            </div>
+
+            <div class="row bg-dark text-white text-truncate" style="height: 60px;"><!-- pie de pagina -->
+                <div class="col my-auto px-3 px-sm-5">
+                    Polo TIC &copy; 2022
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
+
+
+
+

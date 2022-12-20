@@ -1,0 +1,64 @@
+<div class="container p-3" th:fragment="contenido"> <!-- vista de los jugadores -->
+    <div class="card p-4">
+        <div class="row"><!-- esto es boostrap para el mensaje de exito -->
+            <div th:if="${exito}" class="alert alert-success alert-dismissible fade show">
+                <span th:text="${exito}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show">
+                <span th:text="${error}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col h2">Listado de Usuarios</div>
+            <a href="/usuarios/crear" class="col-auto btn btn-lg btn-success"> <!-- aca esta el boton crear -->
+                <i class="fa-solid fa-plus"></i>
+            </a>
+        </div>
+            <!-- aca arranca la tabla -->
+        <table id="usuarios" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Usuario</th>
+                    <th>Rol</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="u : ${usuarios}"><!-- itera todos los elementos de una coleccion (toma un nombre y ejecuta lo que tiene dentro de la etiquita)-->
+                    <td th:text="${u.id}"></td>
+                    <td th:text="${u.email}"></td>
+                    <td th:text="${u.nombre}"></td>
+                    <td th:text="${u.rol.nombre}"></td>
+                    <td th:text="${u.estado}"></td>
+                    <td>
+                        <a class="btn btn-primary" th:href="@{'/usuarios/{id}' (id=${u.id})}"><!-- ver al jugador -->
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+
+                        <a class="btn btn-secondary" th:href="@{'/usuarios/editar/{id}' (id=${u.id})}"> <!-- editar a un jugador -->
+                            <i class="fa-solid fa-pencil"></i>
+                        </a>
+
+                        <form class="d-inline" th:action="@{'/usuarios/{id}' (id=${u.id})}" th:method="DELETE"> <!-- eliminar a un jugador -->
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro de eliminar?')">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script th:fragment="script">
+    $(document).ready(function() {
+        $('#usuarios').DataTable();
+    } );
+</script>
